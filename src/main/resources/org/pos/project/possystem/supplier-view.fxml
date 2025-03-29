@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #4097fe;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.SupplierController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #4097fe;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.SupplierController">
    <children>
       <TextField fx:id="txtId" layoutX="259.0" layoutY="109.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField fx:id="txtName" layoutX="259.0" layoutY="151.0" prefHeight="25.0" prefWidth="183.0" />
@@ -30,10 +29,10 @@
       <Button layoutX="508.0" layoutY="238.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE" />
       <TableView fx:id="tableView" layoutX="14.0" layoutY="286.0" prefHeight="200.0" prefWidth="668.0">
         <columns>
-          <TableColumn prefWidth="95.0" text="Id" />
-          <TableColumn prefWidth="189.0" text="Name" />
-            <TableColumn prefWidth="255.0" text="Address" />
-            <TableColumn prefWidth="128.0" text="Tel Number" />
+          <TableColumn fx:id="s_id" prefWidth="95.0" text="Id" />
+          <TableColumn fx:id="s_name" prefWidth="189.0" text="Name" />
+            <TableColumn fx:id="s_address" prefWidth="255.0" text="Address" />
+            <TableColumn fx:id="s_tell" prefWidth="128.0" text="Tel Number" />
         </columns>
       </TableView>
    </children>
