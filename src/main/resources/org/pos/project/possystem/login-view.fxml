@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.LoginAndRegistrationController">
+   <children>
+      <AnchorPane layoutX="280.0" prefHeight="500.0" prefWidth="420.0" style="-fx-background-image: url('/images/image.jpg');">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </AnchorPane>
+      <AnchorPane prefHeight="500.0" prefWidth="280.0" style="-fx-background-color: #8bbdfa;">
+         <children>
+            <!-- Login Form -->
+            <AnchorPane fx:id="loginPane" prefHeight="500.0" prefWidth="280.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="79.0" layoutY="23.0" prefHeight="43.0" prefWidth="123.0" text="Login">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameField" layoutX="100.0" layoutY="145.0" />
+                  <Label layoutX="17.0" layoutY="145.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="User Name :" />
+                  <PasswordField fx:id="passwordField" layoutX="100.0" layoutY="196.0" />
+                  <Label layoutX="17.0" layoutY="196.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="Password :" />
+                  <Button layoutX="86.0" layoutY="265.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: blue; -fx-font-weight: bold; -fx-border-radius: 20px;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="goToRegistrationButton" layoutX="48.0" layoutY="329.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: #8bbdfa;" text="Go To Registration" textFill="#801c1c">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+
+            <!-- Registration Form -->
+            <AnchorPane fx:id="registrationPane" prefHeight="500.0" prefWidth="280.0" visible="false">
+               <children>
+                  <Label alignment="CENTER" layoutX="48.0" layoutY="26.0" prefHeight="43.0" prefWidth="186.0" text="Registration">
+                     <font>
+                        <Font name="System Bold" size="28.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="regUsernameField" layoutX="100.0" layoutY="113.0" />
+                  <Label layoutX="17.0" layoutY="113.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="User Name :" />
+                  <PasswordField fx:id="regPasswordField" layoutX="100.0" layoutY="282.0" />
+                  <Label layoutX="17.0" layoutY="282.0" prefHeight="25.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="Re. Password :" />
+                  <Button layoutX="86.0" layoutY="352.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: green; -fx-font-weight: bold; -fx-border-radius: 20px;" text="Register" textFill="WHITE">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="backToLoginButton" layoutX="48.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="186.0" style="-fx-background-color: #8bbdfa;" text="Back to Login" textFill="#801c1c">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="regUsernameField1" layoutX="100.0" layoutY="153.0" />
+                  <TextField fx:id="regUsernameField11" layoutX="100.0" layoutY="195.0" />
+                  <TextField fx:id="regUsernameField111" layoutX="100.0" layoutY="238.0" />
+                  <Label layoutX="17.0" layoutY="153.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="First Name :" />
+                  <Label layoutX="17.0" layoutY="195.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="Last Name :" />
+                  <Label layoutX="17.0" layoutY="238.0" prefHeight="25.0" prefWidth="72.0" style="-fx-font-weight: bold;" text="Password :" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

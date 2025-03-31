@@ -8,25 +8,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #4097fe;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.SupplierController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #8bbdfa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.SupplierController">
    <children>
       <TextField fx:id="txtId" layoutX="259.0" layoutY="109.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField fx:id="txtName" layoutX="259.0" layoutY="151.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField fx:id="txtAddress" layoutX="259.0" layoutY="196.0" prefHeight="25.0" prefWidth="183.0" />
       <TextField fx:id="txtTel" layoutX="259.0" layoutY="238.0" prefHeight="25.0" prefWidth="183.0" />
-      <Label layoutX="88.0" layoutY="109.0" prefHeight="25.0" prefWidth="111.0" text="Supplier ID :" />
-      <Label layoutX="88.0" layoutY="151.0" prefHeight="25.0" prefWidth="111.0" text="Supplier Name :" />
-      <Label layoutX="88.0" layoutY="196.0" prefHeight="25.0" prefWidth="111.0" text="Address :" />
-      <Label layoutX="88.0" layoutY="238.0" prefHeight="25.0" prefWidth="111.0" text="Tel Number :" />
-      <Label alignment="CENTER" layoutX="211.0" layoutY="38.0" prefHeight="52.0" prefWidth="275.0" text="SUPPLIER DETAILS">
+      <Label layoutX="88.0" layoutY="109.0" prefHeight="25.0" prefWidth="111.0" text="Supplier ID :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="88.0" layoutY="151.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Supplier Name :" />
+      <Label layoutX="88.0" layoutY="196.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Address :" />
+      <Label layoutX="88.0" layoutY="238.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Tel Number :" />
+      <Label alignment="CENTER" prefHeight="52.0" prefWidth="700.0" style="-fx-background-color: #022065;" text="SUPPLIER DETAILS" textFill="WHITE">
          <font>
             <Font name="System Bold" size="28.0" />
          </font>
       </Label>
-      <Button layoutX="508.0" layoutY="109.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue;" text="Add" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue;" text="Update" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="196.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue;" text="Delete" textFill="WHITE" />
-      <Button layoutX="508.0" layoutY="238.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue;" text="Search" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="109.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="196.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Delete" textFill="WHITE" />
+      <Button layoutX="508.0" layoutY="238.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Search" textFill="WHITE" />
       <TableView fx:id="tableView" layoutX="14.0" layoutY="286.0" prefHeight="200.0" prefWidth="668.0">
         <columns>
           <TableColumn fx:id="s_id" prefWidth="95.0" text="Id" />
