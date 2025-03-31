@@ -9,36 +9,36 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #8bbdfa;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.ProductDetailsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" style="-fx-background-color: #dacef0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.ProductDetailsController">
     <children>
-        <TextField fx:id="txtId" layoutX="259.0" layoutY="109.0" prefHeight="25.0" prefWidth="183.0" />
-        <TextField fx:id="txtName" layoutX="259.0" layoutY="151.0" prefHeight="25.0" prefWidth="183.0" />
-        <TextField fx:id="txtAddress" layoutX="259.0" layoutY="196.0" prefHeight="25.0" prefWidth="183.0" />
-        <Label layoutX="88.0" layoutY="109.0" prefHeight="25.0" prefWidth="111.0" text="Product Name :">
+        <TextField fx:id="txtName" layoutX="147.0" layoutY="111.0" prefHeight="33.0" prefWidth="204.0" />
+        <TextField fx:id="txtDes" layoutX="147.0" layoutY="192.0" prefHeight="33.0" prefWidth="204.0" />
+        <TextField fx:id="txtPrice" layoutX="478.0" layoutY="110.0" prefHeight="33.0" prefWidth="204.0" />
+        <Label layoutX="49.0" layoutY="111.0" prefHeight="33.0" prefWidth="98.0" text="Product Name :">
             <font>
                 <Font name="System Bold" size="12.0" />
             </font></Label>
-        <Label layoutX="88.0" layoutY="151.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Description :" />
-        <Label layoutX="88.0" layoutY="196.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Unit Price :" />
-        <Label layoutX="88.0" layoutY="238.0" prefHeight="25.0" prefWidth="111.0" style="-fx-font-weight: bold;" text="Supplier ID :" />
-        <Label alignment="CENTER" prefHeight="52.0" prefWidth="700.0" style="-fx-background-color: #022065;" text="PRODUCTS DETAILS" textFill="WHITE">
+        <Label layoutX="49.0" layoutY="192.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Description :" />
+        <Label layoutX="391.0" layoutY="111.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Unit Price :" />
+        <Label layoutX="391.0" layoutY="192.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Supplier ID :" />
+        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" text="PRODUCTS DETAILS" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Label>
-        <Button layoutX="508.0" layoutY="109.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
-        <Button layoutX="508.0" layoutY="151.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
-        <Button layoutX="508.0" layoutY="196.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Delete" textFill="WHITE" />
-        <Button layoutX="508.0" layoutY="238.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: blue; -fx-font-weight: bold;" text="Search" textFill="WHITE" />
-        <TableView fx:id="tableView" layoutX="14.0" layoutY="286.0" prefHeight="200.0" prefWidth="668.0">
+        <Button layoutX="718.0" layoutY="110.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
+        <Button layoutX="859.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
+        <Button layoutX="718.0" layoutY="192.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Delete" textFill="WHITE" />
+        <Button layoutX="859.0" layoutY="192.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Search" textFill="WHITE" />
+        <TableView fx:id="tableView" layoutX="5.0" layoutY="288.0" prefHeight="304.0" prefWidth="970.0">
             <columns>
-                <TableColumn fx:id="s_id" prefWidth="95.0" text="Id" />
-                <TableColumn fx:id="s_name" prefWidth="143.0" text="Name" />
-                <TableColumn fx:id="s_address" prefWidth="188.0" text="Description " />
-                <TableColumn fx:id="s_tell" prefWidth="131.0" text="Unit Price" />
-            <TableColumn prefWidth="110.0" text="Supplier ID" />
+                <TableColumn fx:id="s_id" prefWidth="146.0" text="Id" />
+                <TableColumn fx:id="s_name" prefWidth="224.0" text="Name" />
+                <TableColumn fx:id="s_address" prefWidth="226.0" text="Description " />
+                <TableColumn fx:id="s_tell" prefWidth="191.0" text="Unit Price" />
+            <TableColumn prefWidth="181.0" text="Supplier ID" />
             </columns>
         </TableView>
-      <ComboBox layoutX="259.0" layoutY="238.0" prefHeight="25.0" prefWidth="183.0" promptText="Supplier ID" />
+      <ComboBox fx:id="txtid" layoutX="478.0" layoutY="192.0" prefHeight="33.0" prefWidth="204.0" promptText="Supplier ID" />
     </children>
 </AnchorPane>
