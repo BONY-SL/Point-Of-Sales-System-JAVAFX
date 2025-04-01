@@ -113,7 +113,7 @@ public class SupplierController {
         }
     }
 
-    public List<Supplier> getAllSuppliers(){
+    private List<Supplier> getAllSuppliers(){
 
         ArrayList<Supplier> supplierArrayList = new ArrayList<>();
 

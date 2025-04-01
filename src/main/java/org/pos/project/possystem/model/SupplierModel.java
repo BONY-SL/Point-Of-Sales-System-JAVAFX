@@ -15,6 +15,7 @@ public class SupplierModel {
     private static final Logger logger = Logger.getLogger(SupplierModel.class.getName());
 
     private SupplierModel() {
+
     }
 
     public static int saveSupplier(SupplierDTO supplierDTO){

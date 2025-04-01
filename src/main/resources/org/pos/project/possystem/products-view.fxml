@@ -27,7 +27,7 @@
             </font>
         </Label>
         <Button layoutX="718.0" layoutY="110.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
-        <Button layoutX="859.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
+        <Button fx:id="updateButton" layoutX="859.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
         <Button layoutX="718.0" layoutY="192.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Delete" textFill="WHITE" />
         <Button layoutX="859.0" layoutY="192.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Search" textFill="WHITE" />
         <TableView fx:id="tableView" layoutX="5.0" layoutY="288.0" prefHeight="304.0" prefWidth="970.0">

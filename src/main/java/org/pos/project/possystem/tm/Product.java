@@ -1,13 +1,15 @@
-package org.pos.project.possystem.dto;
+package org.pos.project.possystem.tm;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Builder
-public class ProductDTO {
+public class Product {
 
     private Integer id ;
     private String name ;
