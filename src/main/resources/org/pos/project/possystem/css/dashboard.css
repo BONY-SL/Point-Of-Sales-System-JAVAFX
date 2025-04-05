@@ -1,0 +1,69 @@
+.password-field, .text-field {
+    -fx-background-color: #7854ba;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: black;
+}
+.update-button{
+    -fx-font-weight: bold;
+}
+
+.update-button{
+    -fx-background-color: #7854ba;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+
+    /* 3D Effect */
+    -fx-effect: innershadow(gaussian, black, 5, 0.3, 2, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #5e3e8b;
+}
+
+.update-button:hover {
+    -fx-background-color: #6a47b7;
+    -fx-effect: innershadow(gaussian, black, 10, 0.5, 4, 4);
+}
+
+.update-button:pressed {
+    -fx-background-color: #6a47b7;
+    -fx-border-color: #4c3675;
+    -fx-effect: dropshadow(three-pass-box, black, 5, 0.3, 0, 2);
+}
+
+.log-out-button {
+    -fx-background-radius: 5px;
+    -fx-text-fill: #9b0000;
+    -fx-font-size: 14px;
+    -fx-effect: innershadow(gaussian, black, 5, 0.3, 2, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-font-weight: bold;
+}
+
+.log-out-button:hover {
+    -fx-background-color: #dacef0;
+    -fx-effect: innershadow(gaussian, black, 10, 0.5, 4, 4);
+}
+
+.log-out-button:pressed {
+    -fx-background-color: #dacef0;
+    -fx-border-color: #dacef0;
+    -fx-effect: dropshadow(three-pass-box, black, 5, 0.3, 0, 2);
+}
+
+.lable-bottom-border{
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: #4c3675;
+    -fx-font-weight: bold;
+}
+
+.lable-bottom-border2{
+    -fx-border-width: 0 3px 3px 0;
+    -fx-border-color: #4c3675;
+}
+
+.lable-bottom-down{
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: #4c3675;
+}
