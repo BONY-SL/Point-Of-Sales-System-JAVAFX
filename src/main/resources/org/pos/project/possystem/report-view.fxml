@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" style="-fx-background-color: #dacef0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.ReportController">
     <children>
-        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" text="REPORTS" textFill="WHITE">
+        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" styleClass="custom-label" stylesheets="@css/dashboard.css" text="REPORTS" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
@@ -24,6 +24,6 @@
          </font>
       </Label>
       <DatePicker layoutX="382.0" layoutY="111.0" prefHeight="32.0" prefWidth="203.0" />
-      <Button layoutX="607.0" layoutY="111.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" styleClass="update-button" stylesheets="@css/dashboard.css" text="Generate" />
+      <Button layoutX="607.0" layoutY="111.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Generate" />
     </children>
 </AnchorPane>

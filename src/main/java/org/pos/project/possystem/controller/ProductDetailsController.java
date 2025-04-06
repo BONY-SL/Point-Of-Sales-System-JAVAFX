@@ -78,7 +78,7 @@ public class ProductDetailsController {
         var newProduct = ProductDTO.builder()
                 .name(txtName.getText())
                 .description(txtDes.getText())
-                .unitPrice(Integer.parseInt(txtPrice.getText()))
+                .unitPrice(Double.parseDouble(txtPrice.getText()))
                 .supplierId(txtid.getValue()).build();
 
         int result = ProductModel.saveNewProduct(newProduct);

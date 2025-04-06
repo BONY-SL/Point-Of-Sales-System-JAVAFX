@@ -8,10 +8,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.pos.project.possystem.exception.UserEmailExsist;
+import org.pos.project.possystem.exception.UserNotFound;
 import org.pos.project.possystem.model.UserModel;
 import org.pos.project.possystem.tm.Admin;
 import org.pos.project.possystem.tm.Cashier;
 import org.pos.project.possystem.tm.User;
+import org.pos.project.possystem.util.CustomAlert;
+import org.pos.project.possystem.util.CustomAlertType;
 import org.pos.project.possystem.util.UserType;
 
 public class LoginAndRegistrationController {
@@ -84,16 +87,21 @@ public class LoginAndRegistrationController {
         String password = passwordField.getText();
 
         if (getUsername.isEmpty() || password.isEmpty()) {
-            showAlert("Login Error", "Please Enter User Name and Password");
+            CustomAlert.showAlert("Login Error", "Please Enter User Name and Password", CustomAlertType.ERROR);
             return;
         }
         if (!getUsername.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-            showAlert("Invalid Email", "Please enter a valid email address.");
+            CustomAlert.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.WARNING);
             return;
         }
-        User user = User.builder()
-                .email(getUsername).password(password).build();
-        UserModel.login(user);
+        try {
+            User user = User.builder()
+                    .email(getUsername).password(password).build();
+            UserModel.login(user);
+        }catch (UserNotFound e){
+            CustomAlert.showAlert("Error", e.getMessage(), CustomAlertType.WARNING);
+        }
+
     }
 
     @FXML
@@ -107,17 +115,18 @@ public class LoginAndRegistrationController {
         String lastName = regLastNameField11.getText();
         UserType userType = roleBox.getValue();
 
+
         if (email.isEmpty() || password.isEmpty() || reEnterPassword.isEmpty() ||
                 firstName.isEmpty() || lastName.isEmpty() || userType == null) {
-            showAlert("Form Error", "Please fill all fields.");
+            CustomAlert.showAlert("Form Error", "Please fill all fields.", CustomAlertType.WARNING);
             return;
         }
         if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-            showAlert("Invalid Email", "Please enter a valid email address.");
+            CustomAlert.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.ERROR);
             return;
         }
         if (!password.equals(reEnterPassword)) {
-            showAlert("Password Error", "Passwords do not match.");
+            CustomAlert.showAlert("Password Error", "Passwords do not match.", CustomAlertType.ERROR);
             return;
         }
 
@@ -127,7 +136,7 @@ public class LoginAndRegistrationController {
 
              user = Admin.builder()
                     .email(email)
-                    .password(email)
+                    .password(password)
                     .firstName(firstName)
                     .lastName(lastName)
                     .userType(UserType.ADMIN)
@@ -137,28 +146,21 @@ public class LoginAndRegistrationController {
 
              user = Cashier.builder()
                     .email(email)
-                    .password(email)
+                    .password(password)
                     .firstName(firstName)
                     .lastName(lastName)
                     .userType(UserType.CASHIER)
                     .build();
         }
+        System.out.println(user);
         try {
             UserModel.registerUser(user);
-            showAlert("Success", "Registration Successful!");
+            CustomAlert.showAlert("Success", "Registration Successful!", CustomAlertType.INFORMATION);
             clearFields();
         } catch (UserEmailExsist e) {
-            showAlert("Email Error", e.getMessage());
+            CustomAlert.showAlert("Email Error", e.getMessage(), CustomAlertType.ERROR);
         }
 
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void clearFields() {

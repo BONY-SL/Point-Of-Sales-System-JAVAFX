@@ -18,19 +18,19 @@
             <!-- Login Form -->
             <AnchorPane fx:id="loginPane" prefHeight="600.0" prefWidth="380.0">
                <children>
-                  <Label alignment="CENTER" layoutX="-2.0" layoutY="44.0" prefHeight="56.0" prefWidth="380.0" text="Welcome !">
+                  <Label alignment="CENTER" layoutX="-2.0" layoutY="44.0" prefHeight="56.0" prefWidth="380.0" styleClass="custom-label" stylesheets="@css/dashboard.css" text="Welcome !">
                      <font>
-                        <Font name="Arial Bold" size="36.0" />
+                        <Font name="Arial Bold" size="48.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="usernameField" layoutX="94.0" layoutY="216.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 2px 0;" />
+                  <TextField fx:id="usernameField" layoutX="94.0" layoutY="216.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #dacef0; -fx-border-width: 0 0 2px 0;" stylesheets="@css/dashboard.css" />
                   <Label layoutX="13.0" layoutY="216.0" prefHeight="35.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="User Name :">
                      <font>
                         <Font name="Arial Bold" size="12.0" />
                      </font></Label>
-                  <PasswordField fx:id="passwordField" layoutX="94.0" layoutY="294.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #ffffff; -fx-border-width: 0 0 2px 0;" />
+                  <PasswordField fx:id="passwordField" layoutX="94.0" layoutY="294.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #dacef0; -fx-border-width: 0 0 2px 0;" stylesheets="@css/dashboard.css" />
                   <Label layoutX="13.0" layoutY="294.0" prefHeight="35.0" prefWidth="81.0" style="-fx-font-weight: bold;" text="Password :" />
-                  <Button layoutX="135.0" layoutY="379.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold; -fx-border-radius: 20px;" text="Login" textFill="WHITE">
+                  <Button layoutX="135.0" layoutY="379.0" mnemonicParsing="false" onAction="#login" prefHeight="34.0" prefWidth="110.0" styleClass="update-button" stylesheets="@css/dashboard.css" text="Login" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -52,16 +52,16 @@
             <!-- Registration Form -->
             <AnchorPane fx:id="registrationPane" prefHeight="600.0" prefWidth="380.0" visible="false">
                <children>
-                  <Label alignment="CENTER" layoutX="11.0" layoutY="41.0" prefHeight="43.0" prefWidth="347.0" style="-fx-font-family: arial;" text="Registration Form">
+                  <Label alignment="CENTER" layoutX="11.0" layoutY="41.0" prefHeight="43.0" prefWidth="347.0" style="-fx-font-family: arial;" styleClass="custom-label" stylesheets="@css/dashboard.css" text="Registration Form">
                      <font>
                         <Font name="System Bold" size="28.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="regUsernameField" layoutX="143.0" layoutY="113.0" prefHeight="35.0" prefWidth="186.0" />
+                  <TextField fx:id="regUsernameField" layoutX="143.0" layoutY="113.0" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #dacef0;" stylesheets="@css/dashboard.css" />
                   <Label layoutX="17.0" layoutY="113.0" prefHeight="35.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="email :" />
-                  <PasswordField fx:id="regReEnterPassword" layoutX="143.0" layoutY="351.0" prefHeight="35.0" prefWidth="186.0" />
+                  <PasswordField fx:id="regReEnterPassword" layoutX="143.0" layoutY="351.0" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #dacef0;" stylesheets="@css/dashboard.css" />
                   <Label layoutX="17.0" layoutY="351.0" prefHeight="35.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="Re. Password :" />
-                  <Button layoutX="135.0" layoutY="483.0" mnemonicParsing="false" onAction="#register" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold; -fx-border-radius: 20px;" text="Register" textFill="WHITE">
+                  <Button layoutX="135.0" layoutY="483.0" mnemonicParsing="false" onAction="#register" prefHeight="34.0" prefWidth="110.0" styleClass="update-button" stylesheets="@css/dashboard.css" text="Register" textFill="WHITE">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -71,8 +71,8 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="regFirstNameField1" layoutX="143.0" layoutY="176.0" prefHeight="35.0" prefWidth="186.0" />
-                  <TextField fx:id="regLastNameField11" layoutX="143.0" layoutY="237.0" prefHeight="35.0" prefWidth="186.0" />
+                  <TextField fx:id="regFirstNameField1" layoutX="143.0" layoutY="176.0" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #dacef0;" stylesheets="@css/dashboard.css" />
+                  <TextField fx:id="regLastNameField11" layoutX="143.0" layoutY="237.0" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #dacef0;" stylesheets="@css/dashboard.css" />
                   <Label layoutX="17.0" layoutY="176.0" prefHeight="35.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="First Name :" />
                   <Label layoutX="17.0" layoutY="237.0" prefHeight="35.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="Last Name :" />
                   <Label layoutX="17.0" layoutY="294.0" prefHeight="35.0" prefWidth="96.0" style="-fx-font-weight: bold;" text="Password :" />
@@ -82,7 +82,7 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="roleBox" layoutX="143.0" layoutY="408.0" prefHeight="35.0" prefWidth="186.0" promptText="Role" />
-                  <PasswordField fx:id="regPassword" layoutX="143.0" layoutY="294.0" prefHeight="35.0" prefWidth="186.0" />
+                  <PasswordField fx:id="regPassword" layoutX="143.0" layoutY="294.0" prefHeight="35.0" prefWidth="186.0" style="-fx-background-color: #dacef0;" stylesheets="@css/dashboard.css" />
                </children>
             </AnchorPane>
          </children>
