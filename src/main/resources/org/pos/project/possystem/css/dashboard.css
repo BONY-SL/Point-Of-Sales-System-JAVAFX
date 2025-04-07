@@ -67,3 +67,55 @@
     -fx-border-width: 0 0 3px 0;
     -fx-border-color: #4c3675;
 }
+
+.custom-label{
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(114, 110, 109, 0.5), 10, 0.9, 2, 2);
+}
+
+.function-buttons{
+    -fx-background-color: #7854ba;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+
+    /* 3D Effect */
+    -fx-effect: innershadow(gaussian, #e39af6, 5, 0.3, 2, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #5e3e8b;
+}
+
+.add-to-cart{
+    -fx-background-color: #372062;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    /* 3D Effect */
+    -fx-effect: innershadow(gaussian, #8e4c9f, 5, 0.3, 2, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #462c6b;
+}
+.clear{
+    -fx-background-color: #bd0e0e;
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    /* 3D Effect */
+    -fx-effect: innershadow(gaussian, #ec3c3c, 5, 0.3, 2, 2);
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-border-color: #730909;
+}
+.print-bill{
+
+}
+.place-order{
+
+}

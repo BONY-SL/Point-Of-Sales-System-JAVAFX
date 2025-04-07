@@ -21,15 +21,15 @@
         <Label layoutX="49.0" layoutY="192.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Description :" />
         <Label layoutX="391.0" layoutY="111.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Unit Price :" />
         <Label layoutX="391.0" layoutY="192.0" prefHeight="33.0" prefWidth="86.0" style="-fx-font-weight: bold;" text="Supplier ID :" />
-        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" text="PRODUCTS DETAILS" textFill="WHITE">
+        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" styleClass="custom-label" stylesheets="@css/dashboard.css" text="PRODUCTS DETAILS" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="28.0" />
             </font>
         </Label>
-        <Button layoutX="718.0" layoutY="110.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Add" textFill="WHITE" />
-        <Button fx:id="updateButton" layoutX="859.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Update" textFill="WHITE" />
-        <Button layoutX="718.0" layoutY="192.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Delete" textFill="WHITE" />
-        <Button layoutX="859.0" layoutY="192.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" text="Search" textFill="WHITE" />
+        <Button layoutX="718.0" layoutY="110.0" mnemonicParsing="false" onAction="#addBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Add" textFill="WHITE" />
+        <Button fx:id="updateButton" layoutX="859.0" layoutY="110.0" mnemonicParsing="false" onAction="#updateBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Update" textFill="WHITE" />
+        <Button layoutX="718.0" layoutY="192.0" mnemonicParsing="false" onAction="#deleteBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Delete" textFill="WHITE" />
+        <Button layoutX="859.0" layoutY="192.0" mnemonicParsing="false" onAction="#searchBtn" prefHeight="33.0" prefWidth="86.0" style="-fx-background-color: #7854ba; -fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Search" textFill="WHITE" />
         <TableView fx:id="tableView" layoutX="5.0" layoutY="288.0" prefHeight="304.0" prefWidth="970.0">
             <columns>
                 <TableColumn fx:id="s_id" prefWidth="146.0" text="Id" />
