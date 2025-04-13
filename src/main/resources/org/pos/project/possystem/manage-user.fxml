@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" style="-fx-background-color: #dacef0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.ManageUserController">
+    <children>
+        <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" styleClass="custom-label" stylesheets="@css/dashboard.css" text="VIWE USERS" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Label>
+        <TableView fx:id="userTable" layoutX="5.0" layoutY="226.0" prefHeight="365.0" prefWidth="970.0">
+            <columns>
+                <TableColumn fx:id="userId" prefWidth="146.0" text="Id" />
+                <TableColumn fx:id="firstName" prefWidth="224.0" text="First Name" />
+                <TableColumn fx:id="lastName" prefWidth="226.0" text="Last Name" />
+                <TableColumn fx:id="email" prefWidth="191.0" text="Email " />
+                <TableColumn fx:id="role" prefWidth="181.0" text="Role" />
+            </columns>
+        </TableView>
+        <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#goBack" prefHeight="34.0" prefWidth="122.0" style="-fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="go back" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>
+      <Button layoutX="421.0" layoutY="129.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="34.0" prefWidth="138.0" style="-fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Delete User">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>    </children>
+</AnchorPane>

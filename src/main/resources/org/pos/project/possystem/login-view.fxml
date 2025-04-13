@@ -40,12 +40,13 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <CheckBox layoutX="266.0" layoutY="337.0" mnemonicParsing="false" onAction="#showHidePassword" prefHeight="19.0" prefWidth="58.0" text="Show" />
+                  <CheckBox fx:id="checkBoxId" layoutX="266.0" layoutY="337.0" mnemonicParsing="false" onAction="#showHidePassword" prefHeight="19.0" prefWidth="58.0" text="Show" />
                   <Label alignment="CENTER" layoutX="6.0" layoutY="117.0" prefHeight="49.0" prefWidth="363.0" text="POINT OF SALES MANAGEMENT SYSTEM" textFill="#4d0c80">
                      <font>
                         <Font name="Arial Bold" size="16.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="plainPassword" layoutX="94.0" layoutY="294.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-color: #dacef0; -fx-border-width: 0 0 2px 0;" stylesheets="@css/dashboard.css" visible="false" />
                </children>
             </AnchorPane>
 

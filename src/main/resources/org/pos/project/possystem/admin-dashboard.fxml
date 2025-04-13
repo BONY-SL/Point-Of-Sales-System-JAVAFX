@@ -19,9 +19,9 @@
                <image>
                   <Image url="@images/4128349.png" />
                </image></ImageView>
-            <TextField fx:id="userEmail" alignment="CENTER" layoutX="28.0" layoutY="250.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
-            <TextField fx:id="userName" alignment="CENTER" layoutX="28.0" layoutY="333.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
-            <TextField fx:id="role" alignment="CENTER" layoutX="28.0" layoutY="411.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
+            <TextField fx:id="userEmail" alignment="CENTER" editable="false" layoutX="28.0" layoutY="250.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
+            <TextField fx:id="userName" alignment="CENTER" editable="false" layoutX="28.0" layoutY="333.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
+            <TextField fx:id="role" alignment="CENTER" editable="false" layoutX="28.0" layoutY="411.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
             <Label alignment="CENTER" layoutX="108.0" layoutY="217.0" prefHeight="33.0" prefWidth="84.0" text="Email">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -42,13 +42,14 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <CheckBox layoutX="219.0" layoutY="491.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="53.0" text="Show" />
-            <Button alignment="CENTER" layoutX="88.0" layoutY="546.0" mnemonicParsing="false" onAction="#updateUserProfile" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #4d0c80;" styleClass="update-button" text="Update" textFill="WHITE">
+            <CheckBox fx:id="checkBoxId" disable="true" layoutX="219.0" layoutY="491.0" mnemonicParsing="false" onAction="#showHidePassword" prefHeight="31.0" prefWidth="53.0" text="Show" />
+            <Button fx:id="updateButton" alignment="CENTER" layoutX="88.0" layoutY="546.0" mnemonicParsing="false" onAction="#updateUserProfile" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #4d0c80;" styleClass="update-button" text="Update" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="28.0" layoutY="488.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #7854ba;" />
+            <PasswordField fx:id="password" editable="false" layoutX="28.0" layoutY="488.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #7854ba;" />
+            <TextField fx:id="plainPassword" editable="false" layoutX="28.0" layoutY="488.0" prefHeight="38.0" prefWidth="182.0" style="-fx-background-color: #7854ba;" visible="false" />
          </children></AnchorPane>
    </left>
    <center>

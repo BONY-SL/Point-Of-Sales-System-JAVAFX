@@ -73,34 +73,60 @@ public class StockController {
 
     @FXML
     void addBtn(ActionEvent event) {
+        if (productId.getValue() == null || quantity.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please select a product and enter a quantity.", CustomAlertType.WARNING);
+            return;
+        }
 
-        var newStock = ProductStockDTO.builder()
-                .productId(productId.getValue())
-                .quantity(Double.parseDouble(quantity.getText())).build();
+        try {
+            double qty = Double.parseDouble(quantity.getText());
 
-        int result = ProductStockModel.saveNewStock(newStock);
+            if (qty <= 0) {
+                CommonMethod.showAlert("Invalid Quantity", "Quantity must be greater than zero.", CustomAlertType.WARNING);
+                return;
+            }
 
-        if(result >= 0){
-            logger.info("New Stock Record Added Successfully");
-            initialize();
-        }else {
-            logger.info("New Stock Record Not Added Successfully");
+            var newStock = ProductStockDTO.builder()
+                    .productId(productId.getValue())
+                    .quantity(qty)
+                    .build();
+
+            int result = ProductStockModel.saveNewStock(newStock);
+
+            if(result >= 0){
+                logger.info("New Stock Record Added Successfully");
+                CommonMethod.showAlert("INFO", "New Stock Record Added Successfully", CustomAlertType.INFORMATION);
+                initialize();
+            } else {
+                logger.info("New Stock Record Not Added Successfully");
+                CommonMethod.showAlert("ERROR", "New Stock Record Not Added Successfully", CustomAlertType.ERROR);
+            }
+
+        } catch (NumberFormatException e) {
+            CommonMethod.showAlert("Invalid Input", "Please enter a valid number for Quantity.", CustomAlertType.WARNING);
         }
     }
+
 
     @FXML
     void deleteBtn(ActionEvent event) {
 
         if (selectedProductStock == null){
             logger.info("Select The Row First....");
+            CommonMethod.showAlert("INFO","Select The Row First....",CustomAlertType.WARNING);
+
         }else {
             stockId.setText(String.valueOf(selectedProductStock.getId()));
             int result = ProductStockModel.deleteProductStock(selectedProductStock.getId());
             if(result > 0){
                 logger.info("Stock Record Deleted Successfully");
+                CommonMethod.showAlert("INFO","Stock Record Deleted Successfully",CustomAlertType.INFORMATION);
+
                 initialize();
             }else {
                 logger.info("Stock Record Deleted not Successfully");
+                CommonMethod.showAlert("ERROR","Stock Record Deleted not Successfully",CustomAlertType.ERROR);
+
             }
         }
 
@@ -108,22 +134,40 @@ public class StockController {
 
     @FXML
     void searchBtn(ActionEvent event) {
+        if (productId.getValue() == null) {
+            CommonMethod.showAlert("Validation Error", "Please select a Product ID.", CustomAlertType.WARNING);
+            return;
+        }
 
         ProductStockDTO productStockDTO = ProductStockModel.getStockDetails(productId.getValue());
 
-        if(productStockDTO != null){
+        if (productStockDTO != null) {
             productId.setValue(productStockDTO.getProductId());
             quantity.setText(String.valueOf(productStockDTO.getQuantity()));
             stockId.setText(String.valueOf(productStockDTO.getId()));
             updateTime.setText(String.valueOf(productStockDTO.getUpdateTime()));
-        }else {
-            CommonMethod.showAlert("Out Of Stock","Stoke is Not Available", CustomAlertType.WARNING);
+        } else {
+            CommonMethod.showAlert("Out Of Stock", "Stock is not available for the selected product.", CustomAlertType.WARNING);
+            quantity.clear();
+            stockId.clear();
+            updateTime.setText("");
         }
-
     }
+
 
     @FXML
     void updateBtn(ActionEvent event) {
+
+        if (productId.getValue() == null || quantity.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please select a product and make sure stock ID and quantity are filled.", CustomAlertType.WARNING);
+            return;
+        }
+
+        if (Double.parseDouble(quantity.getText()) <= 0) {
+            CommonMethod.showAlert("Invalid Quantity", "Quantity must be greater than zero.", CustomAlertType.WARNING);
+            return;
+        }
+
 
         var newStock = ProductStockDTO.builder()
                 .productId(productId.getValue())
@@ -132,10 +176,13 @@ public class StockController {
         int result = ProductStockModel.saveNewStock(newStock);
 
         if(result >= 0){
-            logger.info("New Stock Record Added Successfully");
+            logger.info("New Stock Record Update Successfully");
+            CommonMethod.showAlert("INFO","New Stock Record Update Successfully",CustomAlertType.INFORMATION);
             initialize();
         }else {
-            logger.info("New Stock Record Not Added Successfully");
+            logger.info("New Stock Record Not Update Successfully");
+            CommonMethod.showAlert("ERROR","New Stock Record Not Update Successfully",CustomAlertType.ERROR);
+
         }
 
     }

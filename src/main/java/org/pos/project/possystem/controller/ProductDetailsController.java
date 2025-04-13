@@ -10,6 +10,8 @@ import org.pos.project.possystem.dto.ProductDTO;
 import org.pos.project.possystem.model.ProductModel;
 import org.pos.project.possystem.tm.Product;
 import org.pos.project.possystem.util.CommonMethod;
+import org.pos.project.possystem.util.CustomAlertType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,21 +78,37 @@ public class ProductDetailsController {
     @FXML
     void addBtn(ActionEvent event) {
 
-        var newProduct = ProductDTO.builder()
-                .name(txtName.getText())
-                .description(txtDes.getText())
-                .unitPrice(Double.parseDouble(txtPrice.getText()))
-                .supplierId(txtid.getValue()).build();
+        if (txtName.getText().isEmpty() || txtDes.getText().isEmpty() || txtPrice.getText().isEmpty() || txtid.getValue() == null) {
+            CommonMethod.showAlert("Validation Error", "Please fill in all fields.", CustomAlertType.WARNING);
+            return;
+        }
 
-        int result = ProductModel.saveNewProduct(newProduct);
+        try {
+            double unitPrice = Double.parseDouble(txtPrice.getText());
 
-        if(result >= 0){
-            logger.info("New Product Record Added Successfully");
-            initialize();
-        }else {
-            logger.info("New Product Record Not Added Successfully");
+            var newProduct = ProductDTO.builder()
+                    .name(txtName.getText())
+                    .description(txtDes.getText())
+                    .unitPrice(unitPrice)
+                    .supplierId(txtid.getValue())
+                    .build();
+
+            int result = ProductModel.saveNewProduct(newProduct);
+
+            if(result >= 0){
+                logger.info("New Product Record Added Successfully");
+                CommonMethod.showAlert("SUCCESS", "New Product Record Added Successfully", CustomAlertType.INFORMATION);
+                initialize();
+            } else {
+                logger.info("New Product Record Not Added Successfully");
+                CommonMethod.showAlert("ERROR", "New Product Record Not Added Successfully", CustomAlertType.ERROR);
+            }
+
+        } catch (NumberFormatException e) {
+            CommonMethod.showAlert("Invalid Input", "Please enter a valid number for Unit Price.", CustomAlertType.WARNING);
         }
     }
+
 
     @FXML
     void deleteBtn(ActionEvent event) {
@@ -98,19 +116,32 @@ public class ProductDetailsController {
 
         if (selectedProduct == null){
             logger.info("Select The Row First....");
+            CommonMethod.showAlert("INFO","Please Select Row First", CustomAlertType.WARNING);
+
         }else {
             int result = ProductModel.deleteProduct(selectedProduct.getId());
             if(result > 0){
                 logger.info("Product Record Deleted Successfully");
+                CommonMethod.showAlert("INFO","Product Record Deleted Successfully", CustomAlertType.INFORMATION);
+
                 initialize();
             }else {
                 logger.info("Product Record Deleted not Successfully");
+                CommonMethod.showAlert("ERROR","Product Record Deleted not Successfully", CustomAlertType.ERROR);
+
             }
         }
     }
 
     @FXML
     void searchBtn(ActionEvent event) {
+
+        if (selectedProduct == null){
+            logger.info("Select The Row First....");
+            CommonMethod.showAlert("INFO","Please Select Row First", CustomAlertType.WARNING);
+            return;
+
+        }
 
         txtName.setText(selectedProduct.getName());
         txtDes.setText(selectedProduct.getDescription());
@@ -124,6 +155,7 @@ public class ProductDetailsController {
 
         if (selectedProduct == null) {
             logger.info("Select The Row First....");
+            CommonMethod.showAlert("INFO","Select The Row First....",CustomAlertType.WARNING);
             return;
         }
 
@@ -142,9 +174,12 @@ public class ProductDetailsController {
                 updateButton.setStyle("-fx-background-color: #7854ba; -fx-text-fill: white; -fx-font-weight: bold");
                 updateButton.setText("Update");
                 logger.info("Product Record Updated Successfully");
+                CommonMethod.showAlert("INFO","Product Record Updated Successfully",CustomAlertType.INFORMATION);
                 initialize();
             } else {
                 logger.info("Product Record Not Updated Successfully");
+                CommonMethod.showAlert("ERROR","Product Record Not Updated Successfully",CustomAlertType.ERROR);
+
             }
         } else {
             txtName.setText(selectedProduct.getName());

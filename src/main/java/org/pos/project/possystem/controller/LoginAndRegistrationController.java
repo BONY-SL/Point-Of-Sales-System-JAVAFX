@@ -204,9 +204,26 @@ public class LoginAndRegistrationController {
     }
 
     @FXML
-    void showHidePassword(ActionEvent event) {
+    private CheckBox checkBoxId;
 
+    @FXML
+    private TextField plainPassword;
+
+    @FXML
+    void showHidePassword(ActionEvent event) {
+        if (checkBoxId.isSelected()) {
+            plainPassword.setText(passwordField.getText());
+            plainPassword.setVisible(true);
+            passwordField.setVisible(false);
+        } else {
+
+            passwordField.setText(plainPassword.getText());
+            passwordField.setVisible(true);
+            plainPassword.setVisible(false);
+        }
     }
+
+
 
 
 }

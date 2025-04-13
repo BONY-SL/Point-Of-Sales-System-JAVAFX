@@ -3,17 +3,21 @@ package org.pos.project.possystem.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.pos.project.possystem.db.DataBaseConnection;
+import org.pos.project.possystem.dto.UserDTO;
 import org.pos.project.possystem.exception.UserEmailExsist;
 import org.pos.project.possystem.exception.UserNotFound;
 import org.pos.project.possystem.tm.Admin;
 import org.pos.project.possystem.tm.User;
 import org.pos.project.possystem.util.PasswordEncoder;
+import org.pos.project.possystem.util.SessionManager;
 import org.pos.project.possystem.util.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class UserModel {
@@ -119,4 +123,94 @@ public class UserModel {
         return user;
     }
 
+
+    public static List<UserDTO> getAllUsers(){
+
+        String getAll = "SELECT * FROM users";
+
+        ArrayList<UserDTO> userDTOArrayList = new ArrayList<>();
+
+        Connection connection;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connection = DataBaseConnection.getDataBaseConnection().getConnection();
+            preparedStatement = connection.prepareStatement(getAll);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                var userDTO = UserDTO.builder()
+                        .id(resultSet.getInt(1))
+                        .email(resultSet.getString(2))
+                        .firstName(resultSet.getString(4))
+                        .lastName(resultSet.getString(5))
+                        .userType(UserType.valueOf(resultSet.getString(6)))
+                        .build();
+
+                userDTOArrayList.add(userDTO);
+            }
+
+        }catch (SQLException e){
+            logger.info(e.getMessage());
+        }finally {
+            try {
+                assert preparedStatement != null;
+                preparedStatement.close();
+            } catch (SQLException e) {
+                logger.info(e.getMessage());
+            }
+        }
+        return userDTOArrayList;
+    }
+
+    public static int updateUserDetails(UserDTO userDto) {
+
+        User currentUser = SessionManager.getCurrentUser();
+
+        Connection connection;
+        PreparedStatement preparedStatement = null;
+        String checkEmailQuery = "SELECT user_id FROM users WHERE email = ? AND user_id != ?";
+
+        try {
+            connection = DataBaseConnection.getDataBaseConnection().getConnection();
+            preparedStatement = connection.prepareStatement(checkEmailQuery);
+
+            preparedStatement.setString(1, userDto.getEmail());
+            preparedStatement.setInt(2, currentUser.getId());
+
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.next()) {
+                return -1;
+            }
+
+            String updateQuery = "UPDATE users SET email = ?, password = ? WHERE user_id = ?";
+            String encodedPassword = PasswordEncoder.encodePassword(userDto.getPassword());
+
+            try (PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+
+
+                stmt.setString(1, userDto.getEmail());
+                stmt.setString(2, encodedPassword);
+                stmt.setInt(3, currentUser.getId());
+                SessionManager.getCurrentUser().setEmail(userDto.getEmail());
+                SessionManager.getCurrentUser().setPassword(userDto.getPassword());
+
+                return stmt.executeUpdate();
+            }
+        }catch (SQLException e){
+            logger.info(e.getMessage());
+        }finally {
+            try {
+                assert preparedStatement != null;
+                preparedStatement.close();
+            } catch (SQLException e) {
+                logger.info(e.getMessage());
+            }
+        }
+
+
+        System.out.println(userDto);
+        return 0;
+    }
 }

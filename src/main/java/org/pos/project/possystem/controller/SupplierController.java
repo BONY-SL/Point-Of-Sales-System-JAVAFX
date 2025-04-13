@@ -10,6 +10,8 @@ import org.pos.project.possystem.dto.SupplierDTO;
 import org.pos.project.possystem.model.SupplierModel;
 import org.pos.project.possystem.tm.Supplier;
 import org.pos.project.possystem.util.CommonMethod;
+import org.pos.project.possystem.util.CustomAlertType;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -49,6 +51,16 @@ public class SupplierController {
 
     @FXML
     void addBtn(ActionEvent event) {
+        // Input validation
+        if (txtId.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtTel.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please fill in all the fields.", CustomAlertType.WARNING);
+            return;
+        }
+
+        if (!txtTel.getText().matches("\\d{10}")) {
+            CommonMethod.showAlert("Invalid Contact", "Please enter a valid 10-digit contact number.", CustomAlertType.WARNING);
+            return;
+        }
 
         SupplierDTO supplierDTO = new SupplierDTO();
         supplierDTO.setId(txtId.getText());
@@ -57,46 +69,85 @@ public class SupplierController {
         supplierDTO.setContact(txtTel.getText());
 
         int result = SupplierModel.saveSupplier(supplierDTO);
-        if(result >= 0){
+        if (result >= 0) {
             logger.info("New Supplier Record Added Successfully");
+            CommonMethod.showAlert("INFO", "New Supplier Record Added Successfully", CustomAlertType.INFORMATION);
             initialize();
-        }else {
+        } else {
             logger.info("New Supplier Record Not Added Successfully");
+            CommonMethod.showAlert("ERROR", "New Supplier Record Not Added Successfully", CustomAlertType.ERROR);
         }
-
     }
+
 
     @FXML
     void deleteBtn(ActionEvent event) {
+        String supplierId = txtId.getText();
 
-        int result = SupplierModel.deleteSupplier(txtId.getText());
-
-        if(result > 0){
-            logger.info("Supplier Record Deleted Successfully");
-            initialize();
-        }else {
-            logger.info("Supplier Record Deleted not Successfully");
+        // Check if ID is entered
+        if (supplierId.isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please enter or select a Supplier ID to delete.", CustomAlertType.WARNING);
+            return;
         }
 
+        // Optional confirmation dialog
+        boolean confirmed = CommonMethod.showConfirmation("Confirm Deletion", "Are you sure you want to delete this supplier?");
+        if (!confirmed) return;
+
+        int result = SupplierModel.deleteSupplier(supplierId);
+
+        if (result > 0) {
+            logger.info("Supplier Record Deleted Successfully");
+            CommonMethod.showAlert("INFO", "Supplier Record Deleted Successfully", CustomAlertType.INFORMATION);
+            initialize();
+        } else {
+            logger.info("Supplier Record Not Deleted Successfully");
+            CommonMethod.showAlert("ERROR", "Supplier Record Not Deleted Successfully", CustomAlertType.ERROR);
+        }
     }
+
 
     @FXML
     void searchBtn(ActionEvent event) {
 
-        SupplierDTO supplierDTO = SupplierModel.searchSupplier(txtId.getText());
+        String supplierId = txtId.getText();
 
-        if (supplierDTO != null){
+        if (supplierId.isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please enter a Supplier ID.", CustomAlertType.WARNING);
+            return;
+        }
+
+        SupplierDTO supplierDTO = SupplierModel.searchSupplier(supplierId);
+
+        if (supplierDTO != null) {
             txtId.setText(supplierDTO.getId());
             txtName.setText(supplierDTO.getName());
             txtAddress.setText(supplierDTO.getAddress());
             txtTel.setText(supplierDTO.getContact());
-        }else {
+        } else {
             logger.info("Invalid Supplier ID");
+            CommonMethod.showAlert("WARNING", "Invalid Supplier ID", CustomAlertType.WARNING);
+
+            txtName.clear();
+            txtAddress.clear();
+            txtTel.clear();
         }
     }
 
+
     @FXML
     void updateBtn(ActionEvent event) {
+        // Validate required fields
+        if (txtId.getText().isEmpty() || txtName.getText().isEmpty() || txtAddress.getText().isEmpty() || txtTel.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please fill in all the fields before updating.", CustomAlertType.WARNING);
+            return;
+        }
+
+        // Optional: validate contact number format
+        if (!txtTel.getText().matches("\\d{10}")) {
+            CommonMethod.showAlert("Invalid Contact", "Please enter a valid 10-digit contact number.", CustomAlertType.WARNING);
+            return;
+        }
 
         SupplierDTO supplierDTO = new SupplierDTO();
         supplierDTO.setId(txtId.getText());
@@ -106,13 +157,16 @@ public class SupplierController {
 
         int result = SupplierModel.updateSupplier(supplierDTO);
 
-        if(result > 0){
-            logger.info("Supplier Record Update Successfully");
+        if (result > 0) {
+            logger.info("Supplier Record Updated Successfully");
+            CommonMethod.showAlert("INFO", "Supplier Record Updated Successfully", CustomAlertType.INFORMATION);
             initialize();
-        }else {
-            logger.info("Supplier Record Not Update Successfully");
+        } else {
+            logger.info("Supplier Record Not Updated Successfully");
+            CommonMethod.showAlert("ERROR", "Supplier Record Not Updated Successfully", CustomAlertType.ERROR);
         }
     }
+
 
     private List<Supplier> getAllSuppliers(){
 

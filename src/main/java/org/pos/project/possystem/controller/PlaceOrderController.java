@@ -169,6 +169,16 @@ public class PlaceOrderController {
     @FXML
     void btnAddToCartOnAction(ActionEvent event) {
 
+        if (cmbItemCode.getValue() == null) {
+            CommonMethod.showAlert("Validation Error", "Please select a product/item code.", CustomAlertType.WARNING);
+            return;
+        }
+
+        if (qtyFroCustomer.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please enter the quantity.", CustomAlertType.WARNING);
+            return;
+        }
+
         ProductDTO productDTO = ProductModel.getProductByID(Integer.parseInt(cmbItemCode.getValue()));
         int qty = Integer.parseInt(qtyFroCustomer.getText());
 
@@ -242,13 +252,18 @@ public class PlaceOrderController {
 
 
         }catch (SQLException | ParseException e) {
-            throw new RuntimeException(e);
+            CommonMethod.showAlert("ERROR",e.getMessage(), CustomAlertType.WARNING);
         }
 
     }
 
     @FXML
     void searchOrderbtn(ActionEvent event) {
+
+        if (searchtxtOrder.getText().isEmpty()) {
+            CommonMethod.showAlert("Validation Error", "Please enter an Order ID.", CustomAlertType.WARNING);
+            return;
+        }
 
         int orderId = Integer.parseInt(searchtxtOrder.getText());
 
