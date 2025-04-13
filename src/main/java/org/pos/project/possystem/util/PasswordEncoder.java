@@ -3,7 +3,10 @@ package org.pos.project.possystem.util;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class PasswordEncoder {
+public final class PasswordEncoder {
+
+    private PasswordEncoder() {
+    }
 
     public static String encodePassword(String password) {
         try {
@@ -24,6 +27,8 @@ public class PasswordEncoder {
 
     public static boolean verifyPassword(String enteredPassword, String storedHash) {
         String enteredPasswordHash = encodePassword(enteredPassword);
+
+        assert enteredPasswordHash != null;
         return enteredPasswordHash.equals(storedHash);
     }
 }

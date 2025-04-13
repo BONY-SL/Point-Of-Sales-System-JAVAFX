@@ -1,10 +1,14 @@
 package org.pos.project.possystem.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.pos.project.possystem.db.DataBaseConnection;
 import org.pos.project.possystem.exception.UserEmailExsist;
 import org.pos.project.possystem.exception.UserNotFound;
+import org.pos.project.possystem.tm.Admin;
 import org.pos.project.possystem.tm.User;
 import org.pos.project.possystem.util.PasswordEncoder;
+import org.pos.project.possystem.util.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +21,10 @@ public class UserModel {
     private UserModel() {
 
     }
+
+    @Getter
+    @Setter
+    private static User user;
 
     private static final Logger logger = Logger.getLogger(UserModel.class.getName());
 
@@ -31,7 +39,8 @@ public class UserModel {
         String checkEmailExist = "SELECT COUNT(*) FROM users WHERE email = ?";
         String saveNewUser = "INSERT INTO users (email, password, first_name, last_name, user_type) VALUES(?,?,?,?,?)";
 
-        try (Connection connection = DataBaseConnection.getDataBaseConnection().getConnection()) {
+        Connection connection = DataBaseConnection.getDataBaseConnection().getConnection();
+        try{
 
             try (PreparedStatement checkEmailStmt = connection.prepareStatement(checkEmailExist)) {
                 checkEmailStmt.setString(1, user.getEmail());
@@ -55,7 +64,9 @@ public class UserModel {
         }
     }
 
-    public static void login(User user) {
+    public static boolean login(User user) {
+
+        boolean value = false;
         System.out.println(user);
 
         String getUserDetails = "SELECT * FROM users WHERE email = ?";
@@ -72,7 +83,17 @@ public class UserModel {
             if(resultSet.next()){
                 getEncryptedPassword = resultSet.getString(3);
                 if(PasswordEncoder.verifyPassword(user.getPassword(),getEncryptedPassword)){
-                    logger.info("OK");
+
+                    User currentUser = new Admin();
+                    currentUser.setId(resultSet.getInt(1));
+                    currentUser.setEmail(resultSet.getString(2));
+                    currentUser.setPassword(user.getPassword());
+                    currentUser.setFirstName(resultSet.getString(4));
+                    currentUser.setLastName(resultSet.getString(5));
+                    currentUser.setUserType(UserType.ADMIN);
+                    setUser(currentUser);
+
+                    value = true;
                 }else {
                     throw new UserNotFound("Password Error", "Email and Password Not Match");
 
@@ -91,5 +112,11 @@ public class UserModel {
                 logger.info(e.getMessage());
             }
         }
+        return value;
     }
+
+    public static User getUserCurrentUser() {
+        return user;
+    }
+
 }

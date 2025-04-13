@@ -9,9 +9,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.pos.project.possystem.dto.ProductDTO;
 import org.pos.project.possystem.model.ProductModel;
 import org.pos.project.possystem.tm.Product;
-
+import org.pos.project.possystem.util.CommonMethod;
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.logging.Logger;
 
 public class ProductDetailsController {
@@ -174,6 +175,13 @@ public class ProductDetailsController {
         }
 
         return productArrayList;
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+
+        CommonMethod.goToBack(event,getClass());
+
     }
 
 }

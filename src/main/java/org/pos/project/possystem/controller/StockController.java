@@ -9,9 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.pos.project.possystem.dto.ProductStockDTO;
 import org.pos.project.possystem.model.ProductStockModel;
 import org.pos.project.possystem.tm.ProductStock;
-import org.pos.project.possystem.util.CustomAlert;
+import org.pos.project.possystem.util.CommonMethod;
 import org.pos.project.possystem.util.CustomAlertType;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -118,7 +117,7 @@ public class StockController {
             stockId.setText(String.valueOf(productStockDTO.getId()));
             updateTime.setText(String.valueOf(productStockDTO.getUpdateTime()));
         }else {
-            CustomAlert.showAlert("Out Of Stock","Stoke is Not Available", CustomAlertType.WARNING);
+            CommonMethod.showAlert("Out Of Stock","Stoke is Not Available", CustomAlertType.WARNING);
         }
 
     }
@@ -159,6 +158,13 @@ public class StockController {
         }
 
         return productArrayList;
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+
+        CommonMethod.goToBack(event,getClass());
+
     }
 }
 

@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.AdminDashBoardController">
+<BorderPane fx:id="dashboardPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.AdminDashBoardController">
    <left>
       <AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #7854ba;" stylesheets="@css/dashboard.css" BorderPane.alignment="CENTER">
          <children>
@@ -19,9 +19,9 @@
                <image>
                   <Image url="@images/4128349.png" />
                </image></ImageView>
-            <TextField layoutX="28.0" layoutY="250.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" />
-            <TextField layoutX="28.0" layoutY="333.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" />
-            <TextField layoutX="28.0" layoutY="411.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" />
+            <TextField fx:id="userEmail" alignment="CENTER" layoutX="28.0" layoutY="250.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
+            <TextField fx:id="userName" alignment="CENTER" layoutX="28.0" layoutY="333.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
+            <TextField fx:id="role" alignment="CENTER" layoutX="28.0" layoutY="411.0" prefHeight="38.0" prefWidth="244.0" style="-fx-background-color: #7854ba;" text="?" />
             <Label alignment="CENTER" layoutX="108.0" layoutY="217.0" prefHeight="33.0" prefWidth="84.0" text="Email">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -43,12 +43,12 @@
                </font>
             </Label>
             <CheckBox layoutX="219.0" layoutY="491.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="53.0" text="Show" />
-            <Button alignment="CENTER" layoutX="88.0" layoutY="546.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #4d0c80;" styleClass="update-button" text="Update" textFill="WHITE">
+            <Button alignment="CENTER" layoutX="88.0" layoutY="546.0" mnemonicParsing="false" onAction="#updateUserProfile" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #4d0c80;" styleClass="update-button" text="Update" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Button>
-            <PasswordField layoutX="28.0" layoutY="488.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #7854ba;" />
+            <PasswordField fx:id="password" alignment="CENTER" layoutX="28.0" layoutY="488.0" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #7854ba;" />
          </children></AnchorPane>
    </left>
    <center>
@@ -59,17 +59,17 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
-            <Button layoutX="28.0" layoutY="281.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Transaction" />
-            <Button layoutX="591.0" layoutY="18.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #dacef0;" styleClass="log-out-button" stylesheets="@css/dashboard.css" text="Log Out" textFill="RED">
+            <Button layoutX="28.0" layoutY="281.0" mnemonicParsing="false" onAction="#transaction" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Transaction" />
+            <Button layoutX="591.0" layoutY="18.0" mnemonicParsing="false" onAction="#logOut" prefHeight="33.0" prefWidth="83.0" style="-fx-background-color: #dacef0;" styleClass="log-out-button" stylesheets="@css/dashboard.css" text="Log Out" textFill="RED">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="243.0" layoutY="281.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Product" />
-            <Button layoutX="465.0" layoutY="281.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Supplier" />
-            <Button layoutX="28.0" layoutY="525.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Stock" />
-            <Button layoutX="243.0" layoutY="525.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Reports" />
-            <Button layoutX="465.0" layoutY="525.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="User Manage" />
+            <Button layoutX="243.0" layoutY="281.0" mnemonicParsing="false" onAction="#product" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Product" />
+            <Button layoutX="465.0" layoutY="281.0" mnemonicParsing="false" onAction="#supplier" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Supplier" />
+            <Button layoutX="28.0" layoutY="525.0" mnemonicParsing="false" onAction="#stock" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Stock" />
+            <Button layoutX="243.0" layoutY="525.0" mnemonicParsing="false" onAction="#report" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="Reports" />
+            <Button layoutX="465.0" layoutY="525.0" mnemonicParsing="false" onAction="#userManage" prefHeight="38.0" prefWidth="180.0" styleClass="update-button" text="User Manage" />
             <ImageView fitHeight="150.0" fitWidth="176.0" layoutX="43.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/transaction.png" />

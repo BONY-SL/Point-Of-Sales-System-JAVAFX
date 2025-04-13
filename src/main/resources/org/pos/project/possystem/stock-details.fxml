@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" style="-fx-background-color: #dacef0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.StockController">
     <children>
         <TextField fx:id="quantity" layoutX="478.0" layoutY="110.0" prefHeight="33.0" prefWidth="204.0" promptText="QTY" />
@@ -43,5 +45,8 @@
       </Label>
       <Label layoutX="391.0" layoutY="193.0" prefHeight="33.0" prefWidth="98.0" style="-fx-font-weight: bold;" text="Update Time :" />
       <Label fx:id="updateTime" layoutX="478.0" layoutY="193.0" prefHeight="33.0" prefWidth="204.0" style="-fx-font-weight: bold;" styleClass="lable-bottom-border" stylesheets="@css/dashboard.css" text="?" />
-    </children>
+        <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#goBack" prefHeight="34.0" prefWidth="122.0" style="-fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="go back" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font></Button>    </children>
 </AnchorPane>

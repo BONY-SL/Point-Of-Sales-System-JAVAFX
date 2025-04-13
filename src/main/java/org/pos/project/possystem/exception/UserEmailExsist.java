@@ -3,7 +3,7 @@ package org.pos.project.possystem.exception;
 
 public class UserEmailExsist extends RuntimeException {
 
-    private String message;
+    private final String message;
 
     public UserEmailExsist(String message, String message1) {
         super(message);
