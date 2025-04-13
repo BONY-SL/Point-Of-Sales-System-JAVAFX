@@ -4,18 +4,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.pos.project.possystem.exception.UserEmailExsist;
 import org.pos.project.possystem.exception.UserNotFound;
 import org.pos.project.possystem.model.UserModel;
 import org.pos.project.possystem.tm.Admin;
 import org.pos.project.possystem.tm.Cashier;
 import org.pos.project.possystem.tm.User;
-import org.pos.project.possystem.util.CustomAlert;
+import org.pos.project.possystem.util.CommonMethod;
 import org.pos.project.possystem.util.CustomAlertType;
+import org.pos.project.possystem.util.SessionManager;
 import org.pos.project.possystem.util.UserType;
+
+import java.io.IOException;
 
 public class LoginAndRegistrationController {
 
@@ -87,22 +94,46 @@ public class LoginAndRegistrationController {
         String password = passwordField.getText();
 
         if (getUsername.isEmpty() || password.isEmpty()) {
-            CustomAlert.showAlert("Login Error", "Please Enter User Name and Password", CustomAlertType.ERROR);
+            CommonMethod.showAlert("Login Error", "Please Enter User Name and Password", CustomAlertType.ERROR);
             return;
         }
         if (!getUsername.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-            CustomAlert.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.WARNING);
+            CommonMethod.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.WARNING);
             return;
         }
         try {
             User user = User.builder()
                     .email(getUsername).password(password).build();
-            UserModel.login(user);
+            if(UserModel.login(user)){
+                SessionManager.setCurrentUser(UserModel.getUserCurrentUser());
+                loadDashboard();
+            }
+
         }catch (UserNotFound e){
-            CustomAlert.showAlert("Error", e.getMessage(), CustomAlertType.WARNING);
+            CommonMethod.showAlert("Error", e.getMessage(), CustomAlertType.WARNING);
         }
 
     }
+
+    private void loadDashboard() {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/pos/project/possystem/admin-dashboard.fxml"));
+
+        try {
+            Parent parent = loader.load();
+            Stage stage = (Stage) usernameField.getScene().getWindow();
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+            stage.setTitle("Admin Dashboard");
+            stage.show();
+            AdminDashBoardController controller = loader.getController();
+            controller.setLoggedInUser(SessionManager.getCurrentUser());
+
+        } catch (IOException e) {
+            CommonMethod.showAlert("Load Error", e.getMessage(), CustomAlertType.ERROR);
+        }
+    }
+
 
     @FXML
     void register(ActionEvent event) {
@@ -118,15 +149,15 @@ public class LoginAndRegistrationController {
 
         if (email.isEmpty() || password.isEmpty() || reEnterPassword.isEmpty() ||
                 firstName.isEmpty() || lastName.isEmpty() || userType == null) {
-            CustomAlert.showAlert("Form Error", "Please fill all fields.", CustomAlertType.WARNING);
+            CommonMethod.showAlert("Form Error", "Please fill all fields.", CustomAlertType.WARNING);
             return;
         }
         if (!email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$")) {
-            CustomAlert.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.ERROR);
+            CommonMethod.showAlert("Invalid Email", "Please enter a valid email address.", CustomAlertType.ERROR);
             return;
         }
         if (!password.equals(reEnterPassword)) {
-            CustomAlert.showAlert("Password Error", "Passwords do not match.", CustomAlertType.ERROR);
+            CommonMethod.showAlert("Password Error", "Passwords do not match.", CustomAlertType.ERROR);
             return;
         }
 
@@ -155,10 +186,10 @@ public class LoginAndRegistrationController {
         System.out.println(user);
         try {
             UserModel.registerUser(user);
-            CustomAlert.showAlert("Success", "Registration Successful!", CustomAlertType.INFORMATION);
+            CommonMethod.showAlert("Success", "Registration Successful!", CustomAlertType.INFORMATION);
             clearFields();
         } catch (UserEmailExsist e) {
-            CustomAlert.showAlert("Email Error", e.getMessage(), CustomAlertType.ERROR);
+            CommonMethod.showAlert("Email Error", e.getMessage(), CustomAlertType.ERROR);
         }
 
     }

@@ -2,7 +2,7 @@ package org.pos.project.possystem.exception;
 
 public class UserNotFound extends RuntimeException {
 
-    private String message;
+    private final String message;
 
     public UserNotFound(String message, String message1) {
         super(message);

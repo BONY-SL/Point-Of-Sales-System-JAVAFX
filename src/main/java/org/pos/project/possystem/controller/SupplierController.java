@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.pos.project.possystem.dto.SupplierDTO;
 import org.pos.project.possystem.model.SupplierModel;
 import org.pos.project.possystem.tm.Supplier;
+import org.pos.project.possystem.util.CommonMethod;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -128,6 +129,13 @@ public class SupplierController {
             supplierArrayList.add(supplier);
         }
         return supplierArrayList;
+
+    }
+
+    @FXML
+    void goBack(ActionEvent event) {
+
+        CommonMethod.goToBack(event,getClass());
 
     }
 }

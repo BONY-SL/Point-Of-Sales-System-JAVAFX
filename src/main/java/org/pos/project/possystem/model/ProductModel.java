@@ -185,4 +185,43 @@ public class ProductModel {
     }
 
 
+    public static ProductDTO getProductByID(Integer id) {
+
+        String getProductDetails = "SELECT * FROM products WHERE product_id = ? ";
+
+        Connection connection;
+        PreparedStatement preparedStatement = null;
+
+        ProductDTO productDTO = null;
+
+        try {
+            connection = DataBaseConnection.getDataBaseConnection().getConnection();
+
+            preparedStatement = connection.prepareStatement(getProductDetails);
+            preparedStatement.setInt(1,id);
+
+            ResultSet result = preparedStatement.executeQuery();
+            if (result.next()) {
+
+                productDTO = ProductDTO.builder()
+                        .id(result.getInt(1))
+                        .name(result.getString(2))
+                        .description(result.getString(3))
+                        .unitPrice(result.getDouble(4))
+                        .supplierId(result.getString(5))
+                        .build();
+            }
+
+        }catch (SQLException e){
+            logger.info(e.getMessage());
+        }finally {
+            try {
+                assert preparedStatement != null;
+                preparedStatement.close();
+            } catch (SQLException e) {
+                logger.info(e.getMessage());
+            }
+        }
+        return productDTO;
+    }
 }

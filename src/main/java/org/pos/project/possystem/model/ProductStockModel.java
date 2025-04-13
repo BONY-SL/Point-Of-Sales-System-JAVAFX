@@ -1,6 +1,7 @@
 package org.pos.project.possystem.model;
 
 import org.pos.project.possystem.db.DataBaseConnection;
+import org.pos.project.possystem.dto.OrderDetailsDTO;
 import org.pos.project.possystem.dto.ProductStockDTO;
 
 import java.sql.Connection;
@@ -207,5 +208,34 @@ public class ProductStockModel {
             }
         }
         return result;
+    }
+
+    public static boolean updateStock(List<OrderDetailsDTO> orderDetailList) {
+        try {
+            for (OrderDetailsDTO orderDetail : orderDetailList) {
+                boolean result = execute(
+                        "UPDATE product_quantity SET quantity = quantity - ? WHERE product_id = ?",
+                        orderDetail.getQty(),
+                        orderDetail.getPrductId()
+                );
+                if (!result) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static <T> T execute(String sql, Object... args) throws SQLException, ClassNotFoundException {
+        PreparedStatement psTm = DataBaseConnection.getDataBaseConnection().getConnection().prepareStatement(sql);
+        for (int i = 0; i < args.length; i++) {
+            psTm.setObject((i + 1), args[i]);
+        }
+        if (sql.startsWith("SELECT") || sql.startsWith("select")) {
+            return (T) psTm.executeQuery();
+        }
+        return (T) (Boolean) (psTm.executeUpdate() > 0);
     }
 }
