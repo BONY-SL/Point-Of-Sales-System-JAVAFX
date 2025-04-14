@@ -35,4 +35,9 @@ Follow the steps below to run the project on your local machine.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
+git clone https://github.com/your-username/your-repo-name.git](https://github.com/BONY-SL/Point-Of-Sales-System-JAVAFX
+```
+
+```bash
+mvn clean install
+```
