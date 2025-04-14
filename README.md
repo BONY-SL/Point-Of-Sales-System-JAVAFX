@@ -41,3 +41,22 @@ https://github.com/BONY-SL/Point-Of-Sales-System-JAVAFX
 ```bash
 mvn clean install
 ```
+
+
+
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/35aa3333-ad0d-44ea-9123-36db432c31b0)
+
+![image](https://github.com/user-attachments/assets/8a4e7eb1-9548-4430-9a94-23ccbb0eada3)
+
+![image](https://github.com/user-attachments/assets/f30d41b9-9c72-4a44-a7cb-c47e9c12e624)
+
+![image](https://github.com/user-attachments/assets/606da757-7c67-41e8-b664-ef461d6313aa)
+
+
+
+
