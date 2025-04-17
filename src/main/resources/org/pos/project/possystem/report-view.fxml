@@ -6,8 +6,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="980.0" style="-fx-background-color: #dacef0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.pos.project.possystem.controller.ReportController">
     <children>
         <Label alignment="CENTER" prefHeight="52.0" prefWidth="980.0" style="-fx-background-color: #7854ba;" styleClass="custom-label" stylesheets="@css/dashboard.css" text="REPORTS" textFill="WHITE">
@@ -25,8 +23,8 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <DatePicker layoutX="382.0" layoutY="111.0" prefHeight="32.0" prefWidth="203.0" />
-      <Button layoutX="607.0" layoutY="111.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="88.0" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Generate" />
+      <DatePicker fx:id="datePicker" layoutX="382.0" layoutY="111.0" prefHeight="32.0" prefWidth="203.0" />
+      <Button layoutX="607.0" layoutY="111.0" mnemonicParsing="false" onAction="#productQtyByDate" prefHeight="32.0" prefWidth="88.0" style="-fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="Generate" />
         <Button layoutX="16.0" layoutY="9.0" mnemonicParsing="false" onAction="#goBack" prefHeight="34.0" prefWidth="122.0" style="-fx-font-weight: bold;" styleClass="function-buttons" stylesheets="@css/dashboard.css" text="go back" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="12.0" />

@@ -10,10 +10,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Duration;
-import org.pos.project.possystem.dto.OrderDetailsDTO;
-import org.pos.project.possystem.dto.ProductDTO;
-import org.pos.project.possystem.dto.ProductStockDTO;
-import org.pos.project.possystem.dto.TransactionDTO;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
+import org.pos.project.possystem.dto.*;
 import org.pos.project.possystem.model.PlaceOrderModel;
 import org.pos.project.possystem.model.ProductModel;
 import org.pos.project.possystem.model.ProductStockModel;
@@ -21,14 +24,13 @@ import org.pos.project.possystem.tm.Cart;
 import org.pos.project.possystem.util.CommonMethod;
 import org.pos.project.possystem.util.CustomAlertType;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class PlaceOrderController {
@@ -120,7 +122,7 @@ public class PlaceOrderController {
 
         if(productStockDTO != null){
             getPName.setText(productDTO.getName());
-            getPPrice.setText("Rs. " + productDTO.getUnitPrice());;
+            getPPrice.setText("Rs. " + productDTO.getUnitPrice());
             getPQ.setText(String.valueOf(productStockDTO.getQuantity()));
             getpDes.setText(productDTO.getDescription());
         }else {
@@ -162,20 +164,15 @@ public class PlaceOrderController {
     }
 
     @FXML
-    void billPrint(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnAddToCartOnAction(ActionEvent event) {
 
         if (cmbItemCode.getValue() == null) {
-            CommonMethod.showAlert("Validation Error", "Please select a product/item code.", CustomAlertType.WARNING);
+            CommonMethod.showAlert("VALIDATION ERROR", "Please select a product/item code.", CustomAlertType.WARNING);
             return;
         }
 
         if (qtyFroCustomer.getText().isEmpty()) {
-            CommonMethod.showAlert("Validation Error", "Please enter the quantity.", CustomAlertType.WARNING);
+            CommonMethod.showAlert("VALIDATION ERROR", "Please enter the quantity.", CustomAlertType.WARNING);
             return;
         }
 
@@ -307,6 +304,35 @@ public class PlaceOrderController {
 
         CommonMethod.goToBack(event,getClass());
 
+
+    }
+
+    @FXML
+    void billPrint(ActionEvent event) {
+
+        try {
+            InputStream report = getClass().getResourceAsStream("/org/pos/project/possystem/reports/Invoice.jrxml");
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(report);
+
+            List<InvoiceDTO> dataBeanList = new ArrayList<>();
+
+            String date = lblDate.getText();
+            int oderId = Integer.parseInt(lblOrderId.getText());
+            double netTotal= Double.parseDouble(lblNetTotal.getText());
+
+            cartList.forEach(cartTBLModel -> dataBeanList.add(new InvoiceDTO(cartTBLModel.getName(), (int) cartTBLModel.getQty(), cartTBLModel.getUnitPrice(), date, oderId, netTotal)));
+
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dataBeanList);
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("MyParameter", dataSource);
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+            JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+            jasperViewer.setVisible(true);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }
